@@ -34,18 +34,17 @@ app.use(express.static("public"));
 
 app.get("/", function(req, res) {
 
-  blog.find({}, function(err, posts){
-
+  blog.find({})
+  .then(posts => {
     res.render("home", {
-  
       homeStartingText: homeStartingContent,
-  
       postArea: posts
-  
-      });
-    
-  
+    });
   })
+  .catch(err => {
+    // Handle the error
+  });
+
 });
 
 app.get("/about", function(req, res) {
@@ -64,9 +63,14 @@ app.get("/post/:postId", function(req, res) {
   const requestedId = req.params.postId;
 
 
-blog.findOne({_id: requestedId}, (e, doc) => {
-  res.render("post", {title: doc.title, content: doc.body});
-})
+blog.findOne({_id: requestedId})
+  .then(doc => {
+    res.render("post", {title: doc.title, content: doc.body});
+  })
+  .catch(e => {
+    // Handle the error
+  });
+
 
 });
 
