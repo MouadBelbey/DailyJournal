@@ -9,11 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "ejs": "^3.1.9",
-    "express": "^4.16.3",
-    "lodash": "^4.17.1",
-    "mongoose": "^6.11.2",
-    "nodemon": "^1.19.4"
+    "gulp": "^4.0.2"
+  },
+  "overrides": {
+    "chokidar": "3.5.3",
+    "glob-parent": "6.0.2"
   }
 }
