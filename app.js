@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const _ = require('lodash');
 
 
-mongoose.connect("mongodb://0.0.0.0:27017/blogDB", {useNewUrlParser: true});
+mongoose.connect(process.env.CUSTOMCONNSTR_MyConnectionString || "mongodb://0.0.0.0:27017/blogDB", {useNewUrlParser: true});
 
 const blogSchema = new mongoose.Schema ({
   title: String,
