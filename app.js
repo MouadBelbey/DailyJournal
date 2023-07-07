@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 const _ = require('lodash');
 
 
-mongoose.connect(process.env.CUSTOMCONNSTR_MyConnectionString || "mongodb://0.0.0.0:27017/blogDB", {useNewUrlParser: true});
+mongoose.connect(process.env.CUSTOMCONNSTR_MyConnectionString || "mongodb+srv://mouadb:1234@cluster0.grjajta.mongodb.net/?retryWrites=true&w=majority/blogDB", {useNewUrlParser: true});
 
 const blogSchema = new mongoose.Schema ({
   title: String,
@@ -89,11 +89,14 @@ app.post("/compose", function(req, res) {
    title: req.body.postTitle,
    body: req.body.postBody
  });
- content.save((e) => {
-   if(!e) {
+ content.save()
+  .then(() => {
     res.redirect("/");
-   }
- });
+  })
+  .catch((error) => {
+    // Handle error
+  });
+
 });
 
 
